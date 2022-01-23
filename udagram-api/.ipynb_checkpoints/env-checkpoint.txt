@@ -1,0 +1,10 @@
+POSTGRES_USERNAME=udagram_user
+POSTGRES_PASSWORD=Udagram1password
+POSTGRES_DB=udagramdb
+POSTGRES_HOST=udagramdb.cabdkww25pgc.us-east-1.rds.amazonaws.com
+POSTGRES_PORT=5432
+PORT=8080
+AWS_REGION=us-east-1
+AWS_PROFILE=
+AWS_BUCKET=udagrammedia
+JWT_SECRET=UdagramSecret

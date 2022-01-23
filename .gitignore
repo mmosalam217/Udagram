@@ -1,0 +1,5 @@
+node_modules/
+udagram-api/node_modules/
+udagram-frontend/node_modules
+udagram-api/.env
+.env
