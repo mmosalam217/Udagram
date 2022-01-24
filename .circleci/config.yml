@@ -44,4 +44,4 @@ workflows:
       - deploy-frontend
       - eb/deploy:
           environment-name: Udagram-env
-          app-dir: ./udagram-frontend/wwww   
+          app-dir: ./udagram-api/wwww   
