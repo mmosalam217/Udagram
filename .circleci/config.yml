@@ -29,6 +29,7 @@ jobs:
   deploy:
     docker:
       - image: "cimg/base:stable"
+    environment-name: Udagram-env
     steps:
       - node/install
       - checkout
@@ -36,6 +37,7 @@ jobs:
       - run:
           name: Deploy backend
           command: |
+            eb init
             npm run backend:deploy
       - run:
           name: Deploy Frontend
