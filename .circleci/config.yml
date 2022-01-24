@@ -36,6 +36,7 @@ jobs:
       - run:
           name: Deploy backend
           command: |
+            eb init $EB_APPLICATION_NAME --region $AWS_DEFAULT_REGION
             npm run backend:deploy
       - run:
           name: Deploy Frontend
