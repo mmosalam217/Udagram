@@ -25,19 +25,14 @@ jobs:
       - run:
           name: Build Backend
           command: |
-            npm run backend:build
-  deploy:
+            npm run backend:ci
+  deploy-frontend:
     docker:
       - image: "cimg/base:stable"
     steps:
       - node/install
       - checkout
       - eb/setup
-      - run:
-          name: Deploy backend
-          command: |
-            eb init $EB_APPLICATION_NAME --region $AWS_DEFAULT_REGION
-            npm run backend:deploy
       - run:
           name: Deploy Frontend
           command: |
@@ -46,4 +41,7 @@ workflows:
   udagram:
     jobs:
       - build
-      - deploy   
+      - deploy-frontend
+      - eb/deploy:
+          environment-name: Udagram-env
+          app-dir: ./udagram-frontend/wwww   
