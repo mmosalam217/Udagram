@@ -46,6 +46,4 @@ workflows:
   udagram:
     jobs:
       - build
-      - deploy:
-          environment-name: Udagram-env
-      
+      - deploy   
