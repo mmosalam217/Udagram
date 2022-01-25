@@ -64,7 +64,7 @@ workflows:
       - build-backend
       - eb/deploy:
           environment-name: Udagram-env
-          app-dir: ./api/www
+          app-dir: ./api/www/
           requires:
             - build-backend
       - build-frontend
