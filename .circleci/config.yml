@@ -11,7 +11,7 @@ jobs:
       - node/install
       - checkout
       - attach_workspace:
-          at: ./udagram-frontend
+          at: ./www
       - run:
           name: Install frontend
           command: |
@@ -39,7 +39,7 @@ jobs:
       - run:
           name: Build Backend
           command: |
-            npm run backend:ci
+            npm run backend:build
       - persist_to_workspace:
           root: .
           paths: ./www
@@ -63,7 +63,7 @@ workflows:
       - build-backend
       - eb/deploy:
           environment-name: Udagram-env
-          app-dir: ./www
+          app-dir: ./www/Archive.zip
           requires:
             - build-backend
       - build-frontend
