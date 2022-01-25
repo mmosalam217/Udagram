@@ -21,7 +21,9 @@ jobs:
   build-backend:
     docker:
       - image: "cimg/base:stable"
-    steps:  
+    steps:
+      - node/install
+      - checkout  
       - run:
           name: Install backend
           command: |
@@ -36,7 +38,7 @@ jobs:
     steps:
       - node/install
       - checkout
-      - eb/setup
+      - aws-cli/setup
       - run:
           name: Deploy Frontend
           command: |
