@@ -31,7 +31,7 @@ jobs:
       - node/install
       - checkout
       - attach_workspace:
-          at: ./www
+          at: ./api
       - run:
           name: Install backend
           command: |
@@ -39,10 +39,10 @@ jobs:
       - run:
           name: Build Backend
           command: |
-            npm run backend:build
+            npm run backend:ci
       - persist_to_workspace:
           root: .
-          paths: ./www
+          paths: ./api
 
   deploy-frontend:
     docker:
@@ -57,13 +57,14 @@ jobs:
           name: Deploy Frontend
           command: |
             aws s3 cp --recursive ./www s3://udagramweb/
+
 workflows:
   udagram:
     jobs:
       - build-backend
       - eb/deploy:
           environment-name: Udagram-env
-          app-dir: ./www/Archive.zip
+          app-dir: ./api/www
           requires:
             - build-backend
       - build-frontend
