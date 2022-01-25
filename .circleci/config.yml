@@ -5,14 +5,14 @@ orbs:
   eb: circleci/aws-elastic-beanstalk@2.0.1
 jobs:
   build-frontend:
-    working_directory: ~/project/udagram-frontend
+    working_directory: ~/udagram-frontend
     docker: 
       - image: "cimg/base:stable"
     steps:
       - node/install
       - checkout
       - attach_workspace:
-          at: ~/project/udagram-frontend
+          at: ~/udagram-frontend
       - run:
           name: Install frontend
           command: |
@@ -22,7 +22,7 @@ jobs:
           command: |
             npm run frontend:build
       - persist_to_workspace:
-          root: ~/project/udagram-frontend
+          root: ~/udagram-frontend
           paths: ./www
 
   build-backend:
@@ -51,13 +51,13 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ~/project/udagram-frontend
+          at: ~/udagram-frontend
       - node/install
       - aws-cli/setup
       - run:
           name: Deploy Frontend
           command: |
-            aws s3 cp --recursive ./www s3://udagramweb/
+            aws s3 cp --recursive ~/udagram-frontend/www s3://udagramweb/
 
 workflows:
   udagram:
