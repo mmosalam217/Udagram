@@ -42,14 +42,14 @@ jobs:
       - run:
           name: Deploy Frontend
           command: |
-            aws s3 cp --recursive ./udagram-frontend/www s3://udagramweb/
+            aws s3 cp --recursive ../udagram-frontend/www s3://udagramweb/
 workflows:
   udagram:
     jobs:
       - build-backend
       - eb/deploy:
           environment-name: Udagram-env
-          app-dir: "./udagram-api/www"
+          app-dir: "../udagram-api/www"
           requires:
             - build-backend
       - build-frontend
