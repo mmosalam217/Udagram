@@ -22,7 +22,7 @@ jobs:
             npm run frontend:build
       - persist_to_workspace:
           root: .
-          paths: ./udagram-frontend/www
+          paths: ./www
 
   build-backend:
     docker:
@@ -31,7 +31,7 @@ jobs:
       - node/install
       - checkout
       - attach_workspace:
-          at: ./udagram-api
+          at: ./www
       - run:
           name: Install backend
           command: |
@@ -42,7 +42,7 @@ jobs:
             npm run backend:ci
       - persist_to_workspace:
           root: .
-          paths: ./udagram-api/www
+          paths: ./www
 
   deploy-frontend:
     docker:
@@ -50,7 +50,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ./udagram-frontend
+          at: ./www
       - node/install
       - aws-cli/setup
       - run:
@@ -63,7 +63,7 @@ workflows:
       - build-backend
       - eb/deploy:
           environment-name: Udagram-env
-          app-dir: ./udagram-api/www
+          app-dir: ./www
           requires:
             - build-backend
       - build-frontend
