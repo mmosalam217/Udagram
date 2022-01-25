@@ -31,7 +31,7 @@ jobs:
       - node/install
       - checkout
       - attach_workspace:
-          at: ./api
+          at: ./udagram-api
       - run:
           name: Install backend
           command: |
@@ -41,8 +41,8 @@ jobs:
           command: |
             npm run backend:ci
       - persist_to_workspace:
-          root: .
-          paths: ./api
+          root: ./udagram-api
+          paths: www/*
 
   deploy-frontend:
     docker:
@@ -65,7 +65,7 @@ workflows:
       - build-backend
       - eb/deploy:
           environment-name: Udagram-env
-          app-dir: ./api/www/
+          app-dir: ./udagram-api/www/
           label: version-<<pipeline.number>>
           requires:
             - build-backend
