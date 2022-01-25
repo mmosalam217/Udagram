@@ -20,7 +20,7 @@ jobs:
       - run:
           name: Build frontend
           command: |
-            cd ~ && ls -a
+            ls -a
             npm run frontend:build
       - persist_to_workspace:
           root: ~/Udagram/udagram-frontend
