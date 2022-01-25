@@ -65,7 +65,7 @@ workflows:
       - build-backend
       - eb/deploy:
           environment-name: Udagram-env
-          app-dir: ./udagram-api/www/
+          app-dir: ~/project/udagram-api/www
           label: version-<<pipeline.number>>
           requires:
             - build-backend
