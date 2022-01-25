@@ -62,8 +62,6 @@ workflows:
     jobs:
       - build-backend
       - eb/deploy:
-          attach_workspace:
-            at: ./udagram-api
           environment-name: Udagram-env
           app-dir: ./udagram-api/www
           requires:
