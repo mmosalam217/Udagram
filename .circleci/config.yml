@@ -56,7 +56,7 @@ jobs:
       - run:
           name: Deploy Frontend
           command: |
-            aws s3 cp --recursive ./www s3://udagramweb/
+            aws s3 cp --recursive ./udagram-frontend/www s3://udagramweb/
 workflows:
   udagram:
     jobs:
