@@ -19,7 +19,6 @@ jobs:
       - run:
           name: Build frontend
           command: |
-            ls -a
             npm run frontend:build
       - persist_to_workspace:
           root: ./udagram-frontend
@@ -57,7 +56,8 @@ jobs:
       - run:
           name: Deploy Frontend
           command: |
-            aws s3 cp --recursive ~/Udagram/udagram-frontend/www s3://udagramweb/
+            ls -a
+            aws s3 cp --recursive ./udagram-frontend/www s3://udagramweb/
 
 workflows:
   udagram:
