@@ -39,7 +39,7 @@ jobs:
       - run:
           name: Build Backend
           command: |
-            npm run backend:ci
+            npm run backend:build
       - persist_to_workspace:
           root: ./udagram-api
           paths: www/*
@@ -58,15 +58,26 @@ jobs:
           command: |
             ls -a
             aws s3 cp --recursive ./udagram-frontend/www s3://udagramweb/
-
+  deploy-backend:
+    docker:
+      - image: "cimg/base:stable"
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./udagram-api
+      - eb/setup
+      - run:
+          name: Deploy backend
+          command: |
+            eb init udagram -p node.js -r $AWS_DEFAULT_REGION
+            ls -a
+            mv ./udagram-api/.elasticbeanstalk/config.yml ./.elasticbeanstalk/config.yml
+            eb deploy Udagram-env
 workflows:
   udagram:
     jobs:
       - build-backend
-      - eb/deploy:
-          environment-name: Udagram-env
-          app-dir: ~/project/udagram-api/www
-          label: version-<<pipeline.number>>
+      - deploy-backend:
           requires:
             - build-backend
       - build-frontend
