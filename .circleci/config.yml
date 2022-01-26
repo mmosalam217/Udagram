@@ -20,6 +20,7 @@ jobs:
           name: Build frontend
           command: |
             npm run frontend:build
+      # persist build folder as we need it in the deploy job
       - persist_to_workspace:
           root: ./udagram-frontend
           paths: www/*
@@ -40,6 +41,7 @@ jobs:
           name: Build Backend
           command: |
             npm run backend:ci
+      # Persist into shared volume as we need it in the deploy job
       - persist_to_workspace:
           root: ./udagram-api
           paths:
@@ -71,6 +73,10 @@ jobs:
       - run:
           name: Deploy backend
           command: |
+            # as eb/deploy has issues initializing with artifact folder
+            # we need as workaround to init manually
+            # as we configure an artifact folder path in the config file
+            # we copy the local confgs instead of those created by eb init
             eb init udagram -p node.js -r $AWS_DEFAULT_REGION
             cp ./cd_configs/config.yml ./.elasticbeanstalk/config.yml
             eb deploy Udagram-env
