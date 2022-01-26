@@ -70,7 +70,7 @@ jobs:
           name: Deploy backend
           command: |
             eb init udagram -p node.js -r $AWS_DEFAULT_REGION
-            cat .circleci/config.yml
+            cat .elasticbeanstalk/config.yml
             npm run backend:deploy
 workflows:
   udagram:
