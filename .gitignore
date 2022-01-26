@@ -3,3 +3,8 @@ udagram-api/node_modules/
 udagram-frontend/node_modules
 udagram-api/.env
 .env
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
