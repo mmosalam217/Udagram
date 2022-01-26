@@ -3,7 +3,7 @@
     "scripts": {
         "backend:install": "cd udagram-api && npm install",
         "backend:build": "cd udagram-api && npm run build",
-        "backend:ci": "cd udagram-api && npm run ci-build",
+        "backend:ci": "cp ./.elasticbeanstalk/config.yml ./cd_configs/config.yml && cd udagram-api && npm run build",
         "backend:deploy": "cd udagram-api && npm run deploy",
         "frontend:install": "cd udagram-frontend && npm install -D --legacy-peer-deps && npm install --legacy-peer-deps",
         "frontend:build": "cd udagram-frontend && npm run build",
