@@ -71,7 +71,7 @@ jobs:
       - run:
           name: Deploy backend
           command: |
-            eb init udagram -p node.js -r $AWS_DEFAULT_REGION
+            eb init udagram -p node.js -r $AWS_DEFAULT_REGION --profile eb-cli
             cat ./.elasticbeanstalk/config.yml
             cp ./cd_configs/config.yml ./.elasticbeanstalk/config.yml
             cat ./.elasticbeanstalk/config.yml
