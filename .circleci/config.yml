@@ -72,7 +72,7 @@ jobs:
           name: Deploy backend
           command: |
             eb init udagram -p node.js -r $AWS_DEFAULT_REGION
-            cp ./cd_config/.elasticbeanstalk/config.yml ./.elasticbeanstalk/config.yml
+            cp ./cd_configs/config.yml ./.elasticbeanstalk/config.yml
             npm run backend:deploy
 workflows:
   udagram:
