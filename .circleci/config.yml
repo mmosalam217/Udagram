@@ -40,7 +40,7 @@ jobs:
       - run:
           name: Build Backend
           command: |
-            npm run backend:ci
+            npm run backend:build
       # Persist into shared volume as we need it in the deploy job
       - persist_to_workspace:
           root: ./udagram-api
